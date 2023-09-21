@@ -1,4 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@300&family=Kosugi+Maru&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=B612+Mono&family=Varela+Round&display=swap');
+
+@font-face {
+    font-family: Calculator;
+    src: url(./fonts/calculator.ttf);
+  }
 
 :root {
     --background: #024552;
@@ -9,22 +14,85 @@
     --grey-btn: #bcaa70;
     --orange-btn: #fc6b17;
     --btn-text: #112329;
+    --logo: #705937;
+    --logo-background: #02201d;
+    --calc-name: #9b672e;
+    --display-background: #311014;
 
 }
+
 body {
+    width: 100%;
+    height: 100%;
     background-color: var(--background);
 }
 
+.calculator-body {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    width: 600px;
+    height: 800px;
+    
+}
 .calculator {
-    display: block;
-    width: 50%;
     margin: auto;
+    background-color: var(--body-sides);
+    padding: 100px 40px 40px 40px;
+    width: 400px;
+    border-radius: 20px;
 }
 
+#screen-border {
+    display: flex;
+    height: 90px;
+    background-color: black;
+}
+
+#screen {
+    display: inline-block;
+    height: 70px;
+    width: 95%;
+    margin: auto;
+    border-radius: 12px;
+    background-color: var(--display-background);
+    font-family: Calculator;
+    font-size: 80px;
+    color: rgb(144, 10, 10);
+    letter-spacing: 3px;
+}
+
+#screen-divider {
+    height: 40px;
+    background-color: var(--logo-background);
+}
+#calc-title {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: var(--logo-background);
+    height: 60px;
+    border-top-style: dashed;
+    border-top-width: 0.1px;
+    border-color: #394d21;
+}
+
+#ti-logo {
+    padding-top: 6px;
+    width: 40px;
+}
+
+#calc-name {
+    display: inline-block;
+    color: var(--calc-name);
+    font-family: 'B612 Mono', monospace;
+    letter-spacing: -2px;
+    font-size: 24px;
+    padding-top: 12px;
+}
 .calc-buttons {
     background-color: var(--body-top);
-    display: inline-block;
-    width: 400px;
+    padding: 10px;
 }
 
 .row-1,
@@ -33,18 +101,20 @@ body {
 .row-4,
 .row-5 {
     display: flex;
-    gap: 5px;
     margin: 5px;
 }
 
 .button {
     flex: 1;
-    height: 50px;
+    padding: 14px 0;
     color: var(--btn-text);
-    font-size: 24px;
-    font-family: Archivo, 'Kosugi Maru';
+    font-size: 40px;
+    font-family: 'Varela Round', sans-serif;
     font-weight: 600;
+    margin: 8px;
+    border-radius: 6px;
 }
+
 
 .white-btn {
     background-color: var(--white-btn);
