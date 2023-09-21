@@ -1,4 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@300&family=Kosugi+Maru&display=swap');
+
+:root {
+    --background: #024552;
+    --body-sides: #a88a60;
+    --body-top: #021b1d;
+    --body-text: #aa7331;
+    --white-btn: #e6dac6;
+    --grey-btn: #bcaa70;
+    --orange-btn: #fc6b17;
+    --btn-text: #112329;
+
+}
 body {
-    background-color: #1e0220;
+    background-color: var(--background);
 }
 
+.calculator {
+    display: block;
+    width: 50%;
+    margin: auto;
+}
+
+.calc-buttons {
+    background-color: var(--body-top);
+    display: inline-block;
+    width: 400px;
+}
+
+.row-1,
+.row-2,
+.row-3,
+.row-4,
+.row-5 {
+    display: flex;
+    gap: 5px;
+    margin: 5px;
+}
+
+.button {
+    flex: 1;
+    height: 50px;
+    color: var(--btn-text);
+    font-size: 24px;
+    font-family: Archivo, 'Kosugi Maru';
+    font-weight: 600;
+}
+
+.white-btn {
+    background-color: var(--white-btn);
+}
+
+.grey-btn {
+    background-color: var(--grey-btn);
+}
+
+.orange-btn {
+    background-color: var(--orange-btn);
+}
+
+#btn-0,
+#btn-equals {
+    flex: 2;
+}
