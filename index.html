@@ -8,49 +8,52 @@
     <title>TI-2600</title>
 </head>
 <body>
+    <div class="container">
     <div class="calculator-body">
-    <div class="calculator">
-        <div class="calc-display">
-            <div id="screen-border">
-                <div id="screen">0000000000</div>
+        <div class="calculator">
+            <div class="calc-display">
+                <div id="screen-border">
+                    <div id="screen"></div>
+                    <div id="screen-digits"></div>
+                </div>
+                <div id="screen-divider"></div>
+                <div id="calc-title">
+                    <img id="ti-logo" src="./images/ti-logo.png" alt="Texas Instruments Logo">
+                    <div id="calc-name">Datamath II</div>
+                </div>  
             </div>
-            <div id="screen-divider"></div>
-            <div id="calc-title">
-                <img id="ti-logo" src="./images/ti-logo.png" alt="Texas Instruments Logo">
-                <div id="calc-name">Datamath II</div>
-            </div>
-        </div>
 
-        <div class="calc-buttons">        
-            <div class="row-1">
-                <button class="button grey-btn" id="btn-c">C</button>
-                <button class="button grey-btn" id="btn-ce">CE</button>
-                <button class="button grey-btn" id="btn-perc">%</button>
-                <button class="button grey-btn" id="btn-divide">&#xF7;</button>
+            <div class="calc-buttons">        
+                <div class="row-1">
+                    <button class="button grey-btn" id="btn-c" data-key="Escape">C</button>
+                    <button class="button grey-btn" id="btn-ce" data-key="Backspace">CE</button>
+                    <button class="button grey-btn operator" id="btn-perc" data-key="%">%</button>
+                    <button class="button grey-btn operator" id="btn-divide" data-key="/">&#xF7;</button>
+                </div>
+                <div class="row-2">
+                    <button class="button white-btn number" id="btn-7" data-key="7">7</button>
+                    <button class="button white-btn number" id="btn-8" data-key="8">8</button>
+                    <button class="button white-btn number" id="btn-9" data-key="9">9</button>
+                    <button class="button grey-btn operator" id="btn-multiply" data-key="*">&#215;</button>
+                </div>
+                <div class="row-3">
+                    <button class="button white-btn number" id="btn-4" data-key="4">4</button>
+                    <button class="button white-btn number" id="btn-5" data-key="5">5</button>
+                    <button class="button white-btn number" id="btn-6" data-key="6">6</button>
+                    <button class="button grey-btn operator" id="btn-minus" data-key="-"> &#8722;</button>
+                </div>
+                <div class="row-4">
+                    <button class="button white-btn number" id="btn-1" data-key="1">1</button>
+                    <button class="button white-btn number" id="btn-2" data-key="2">2</button>
+                    <button class="button white-btn number" id="btn-3" data-key="3">3</button>
+                    <button class="button grey-btn operator" id="btn-plus" data-key="+">&#43;</button>
+                </div>
+                <div class="row-5">
+                    <button class="button white-btn number" id="btn-0" data-key="0">0</button>
+                    <button class="button white-btn" id="btn-decimal" data-key=".">&#183;</button>
+                    <button class="button orange-btn" id="btn-equals" data-key="=">&#61;</button>
+                </div>   
             </div>
-            <div class="row-2">
-                <button class="button white-btn" id="btn-7">7</button>
-                <button class="button white-btn" id="btn-8">8</button>
-                <button class="button white-btn" id="btn-9">9</button>
-                <button class="button grey-btn" id="btn-mult">&#215;</button>
-            </div>
-            <div class="row-3">
-                <button class="button white-btn" id="btn-4">4</button>
-                <button class="button white-btn" id="btn-5">5</button>
-                <button class="button white-btn" id="btn-6">6</button>
-                <button class="button grey-btn" id="btn-minus"> &#8722;</button>
-            </div>
-            <div class="row-4">
-                <button class="button white-btn" id="btn-1">1</button>
-                <button class="button white-btn" id="btn-2">2</button>
-                <button class="button white-btn" id="btn-3">3</button>
-                <button class="button grey-btn" id="btn-add">&#43;</button>
-            </div>
-            <div class="row-5">
-                <button class="button white-btn" id="btn-0">0</button>
-                <button class="button white-btn" id="btn-decimal">&#183;</button>
-                <button class="button orange-btn" id="btn-equals">&#61;</button>
-            </div>   
         </div>
     </div>
 </div>
