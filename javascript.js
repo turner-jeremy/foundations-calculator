@@ -2,11 +2,13 @@ let runningTotal = 0;
 let currentNumber = 0;
 let currentOperator = "";
 let displayString = "";
+let repeatedOperator = false;
 let repeatedDecimal = false;
+let resetNumbers = false;
 let numberOfCalculations = 0;
 let clearDisplay = false;
 let calculate = false;
-let repeatedOperator = false;
+
 
 
 const calcDisplay = document.getElementById('screen-digits');
@@ -23,9 +25,9 @@ function buttonClicked(button) {
     } else {
         keyCode = button.key;
     }
-
-        keyCode == 'Enter' || keyCode == 'Return' ? keyCode = '=' : keyCode = keyCode;
-
+    // Treat enter or return key as equals
+    keyCode == 'Enter' || keyCode == 'Return' ? keyCode = '=' : keyCode = keyCode;
+    console.log(keyCode);
     const currentButton = document.querySelector(`button[data-key="${keyCode}"]`);
     const key = document.querySelector(`button[data-key="${keyCode}"]`);
     if (!currentButton) return; // Exit function if pressed key not assigned
@@ -42,10 +44,16 @@ function buttonClicked(button) {
         clearEntryClicked();
     } else if (key.id == 'btn-equals') {
         equalsClicked();
-    }
+    } else if (key.id == 'btn-percent') {
+        percentageClicked();
+    };
 };
 
 function numberClicked(key) {
+    if (resetNumbers) {
+        clearEntryClicked();
+    }
+
     let numberKey = document.getElementById(key);
     if (clearDisplay ) { 
         displayString = numberKey.textContent;
@@ -56,6 +64,7 @@ function numberClicked(key) {
     currentNumber = Number(displayString);
     updateDisplay(displayString);
     repeatedOperator = false;
+    resetNumbers = false;
 }
 
 function operatorClicked(operatorBtn) {
@@ -95,6 +104,29 @@ function equalsClicked() {
     calculate = false;
     repeatedDecimal = false;
     repeatedOperator = false;
+    resetNumbers = true;
+}
+
+function percentageClicked() {
+    currentNumber = Number(displayString);
+    percentage = (runningTotal / (100 / currentNumber));
+    switch (currentOperator) {
+        case 'btn-plus':
+            runningTotal = runningTotal + (runningTotal / (100 / currentNumber));
+            break;
+        case 'btn-minus':
+            runningTotal = runningTotal - (runningTotal / (100 / currentNumber));
+            break;
+        case 'btn-multiply':
+            runningTotal = runningTotal + (runningTotal / (100 / currentNumber));
+            break;
+        case 'btn-divide':
+            runningTotal = (runningTotal / currentNumber) * 100;
+            break;
+    }
+    updateDisplay(String(runningTotal));
+    calculate = false;
+    resetNumbers = true;
 }
 
 function calculateTotal() {
@@ -130,6 +162,8 @@ function clearClicked() {
     repeatedDecimal = false;
     numberOfCalculations = 0;
     clearDisplay = false;
+    resetNumbers = false;
+    calculate = false;
     updateDisplay(displayString);
 }
 
@@ -139,23 +173,28 @@ function clearEntryClicked() {
     repeatedDecimal = false;
     repeatedOperator = false;
     clearDisplay = false;
+    resetNumbers = false;
     updateDisplay(displayString);
 }
 
 function updateDisplay(currentString) {
-    console.log(currentString);
     currentString.length <= 8 ?
-    calcDisplay.textContent = currentString :
-    calcDisplay.textContent = roundNumber(currentString);
+    calcDisplay.innerHTML = currentString :
+    calcDisplay.innerHTML = roundNumber(currentString);
 }
 
 function roundNumber(currentString) {
     let decimalPlaces = 0;
     const currentNumber = Number(currentString);
-    return String(Number.parseFloat(currentNumber).toExponential(3));
+    if (Math.abs(currentNumber) >= 100000000) {
+        return `(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`
+    } else if (currentNumber < 1 && currentNumber > -1) {
+        return String(currentNumber.toFixed(7))
+    } else {
+        return String(currentNumber.toPrecision(8));
+    };
 }
 
 function dividedByZero() {
-    console.log("YOU DIVIDED BY ZERO");
-    updateDisplay("NOOOO");
+    updateDisplay("NO NO NO");
 }

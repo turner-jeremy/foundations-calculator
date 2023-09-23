@@ -7,23 +7,25 @@
 
 :root {
     --background: #024552;
-    --body-top: #cfaf82;
-    --body-sides: #8b754e;
-    --body-inner: #021b1d;
+    --body-top: #dad0b5;
+    --body-sides: #ada187;
+    --body-inner: #313230;
     --body-text: #aa7331;
-    --white-btn: #e6dac6;
-    --grey-btn: #bcaa70;
-    --orange-btn: #fc6b17;
+    --white-btn: #feffff;
+    --grey-btn: #ddd4be;
+    --orange-btn: #f0ac62;
     --btn-text: #112329;
     --logo: #705937;
-    --logo-background: #02201d;
+    --logo-background: #353832;
     --calc-name: #9b672e;
-    --display-digits: rgb(195, 21, 21);
-    --display-background: #311014;
+    --display-digits: #ea9970;
+    --display-digits-shadow-1: #e99177;
+    --display-digits-shadow-2: #a9271e;
+    --display-background: #301a14;
     --display-border: #000000;
-    --white-btn-side: #f5efdc;
-    --grey-btn-side: #e2c490;
-    --orange-btn-side: #ff9b64;
+    --white-btn-side: #9f9d8d;
+    --grey-btn-side: #665b3b;
+    --orange-btn-side: #9f411e;
 }
 
 * {
@@ -45,7 +47,7 @@ body {
     width: 450px;
     background-color: var(--body-top);
     padding: 20px;
-    border-radius: 20px;
+    border-radius: 5px;
     box-shadow: 
         0 -8px 10px 10px var(--body-top),
         0 -20px 0 25px var(--body-sides);
@@ -54,35 +56,37 @@ body {
 #screen-border {
     display: flex;
     justify-content: right;
-    align-items: center;
-    height: 90px;
+    align-items: flex-start;
+    height: 200px;
     background-color: var(--display-border);
     border-top-right-radius: 40px;
     border-top-left-radius: 40px;
 }
 
 #screen {
-    height: 70px;
-    width: 95%;
-    margin: auto;
+    height: 50px;
+    width: 80%;
+    /* margin: auto; */
     border-radius: 12px;
     background-color: var(--display-background);
 }
 
 #screen-digits {
     position: absolute;
-    font-family: Calculator;
-    font-size: 90px;
+    font-family: 'Segment7Standard';
+    font-weight: normal;
+    font-style: italic;
+    font-size: 40px;
     color: var(--display-digits);
-    letter-spacing: 6px;
-    padding-right: 15px;
-    padding-bottom: 5px;
+    text-shadow: 
+        0 0 0.2em var(--display-digits-shadow-1),
+        0 0 0.3em var(--display-digits-shadow-2);
+    letter-spacing: 12px;
+    padding-top: 1%;
+    padding-right: 13%;
+    /* padding-bottom: 5px; */
 }
 
-#screen-divider {
-    height: 40px;
-    background-color: var(--logo-background);
-}
 #calc-title {
     display: flex;
     justify-content: space-around;
