@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=B612+Mono&family=Varela+Round&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=B612+Mono:wght@400;700&family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,100&family=Varela+Round&display=swap');
 
 @font-face {
     font-family: Calculator;
@@ -15,12 +15,12 @@
     --grey-btn: #ddd4be;
     --orange-btn: #f0ac62;
     --btn-text: #112329;
-    --logo: #705937;
+    --logo: #ebe1d1;
     --logo-background: #353832;
-    --calc-name: #9b672e;
-    --display-digits: #ea9970;
-    --display-digits-shadow-1: #e99177;
-    --display-digits-shadow-2: #a9271e;
+    --calc-name: #ebe1d1;
+    --display-digits: #fca794;
+    --display-digits-shadow-1: red;
+    --display-digits-shadow-2: #ae241a;
     --display-background: #301a14;
     --display-border: #000000;
     --white-btn-side: #9f9d8d;
@@ -32,41 +32,43 @@
     box-sizing: border-box;
 }
 
-html, body {
-    height: 100%;
-}
 body {
     background-color: var(--background);
-}
-
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    perspective: 3.125vmin;
+  }
+  
 .calculator {
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    width: 450px;
+    width: 400px;
     background-color: var(--body-top);
-    padding: 20px;
-    border-radius: 5px;
+    padding: 80px 6px 10px 6px;
+    border-radius: 3px;
     box-shadow: 
-        0 -8px 10px 10px var(--body-top),
-        0 -20px 0 25px var(--body-sides);
+        0 -5px 12px 10px var(--body-top),
+        0 -10px 0 18px var(--body-sides);
+    transform: rotateY(180);
 }
 
 #screen-border {
     display: flex;
     justify-content: right;
     align-items: flex-start;
-    height: 200px;
+    height: 80px;
     background-color: var(--display-border);
-    border-top-right-radius: 40px;
-    border-top-left-radius: 40px;
+    border-top-right-radius: 30px;
+    border-top-left-radius: 30px;
 }
 
 #screen {
     height: 50px;
     width: 80%;
-    /* margin: auto; */
+    margin: 8px auto;
     border-radius: 12px;
     background-color: var(--display-background);
 }
@@ -74,17 +76,16 @@ body {
 #screen-digits {
     position: absolute;
     font-family: 'Segment7Standard';
-    font-weight: normal;
-    font-style: italic;
-    font-size: 40px;
+    font-size: 32px;
     color: var(--display-digits);
     text-shadow: 
-        0 0 0.2em var(--display-digits-shadow-1),
-        0 0 0.3em var(--display-digits-shadow-2);
-    letter-spacing: 12px;
-    padding-top: 1%;
-    padding-right: 13%;
-    /* padding-bottom: 5px; */
+        0 0 6px var(--display-digits-shadow-1),
+        0 0 12px var(--display-digits-shadow-1),
+        0 0 12px var(--display-digits-shadow-1),
+        0 0 32px var(--display-digits-shadow-2);
+    letter-spacing: 18px;
+    padding-top: 18px;
+    padding-right: 30px;
 }
 
 #calc-title {
@@ -92,30 +93,32 @@ body {
     justify-content: space-around;
     align-items: center;
     background-color: var(--logo-background);
-    height: 60px;
+    height: 50px;
     border-top-style: dashed;
     border-top-width: 0.1px;
     border-color: #394d21;
 }
 
 #ti-logo {
-    padding-top: 6px;
+    padding-top: 4px;
     width: 40px;
 }
 
 #calc-name {
     display: inline-block;
-    color: var(--calc-name);
+    color: var(--logo);
     font-family: 'B612 Mono', monospace;
-    letter-spacing: -2px;
-    font-size: 24px;
+    font-weight: 900;
+    font-size-adjust: -200px;
+    letter-spacing: -1px;
+    font-size: 20px;
     padding-top: 12px;
 }
 .calc-buttons {
     background-color: var(--body-inner);
     padding: 10px;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
 }
 
 .row-1,
@@ -129,16 +132,15 @@ body {
 
 .button {
     flex: 1;
-    padding: 14px 0;
+    padding: 10px 0;
     color: var(--btn-text);
-    font-size: 40px;
+    font-size: 32px;
     font-family: 'Varela Round', sans-serif;
-    font-weight: 600;
+    font-weight: 400;
     margin: 8px;
-    border-radius: 6px;
+    border-radius: 4px;
     outline: none;
     border-style: none;
-
     cursor: pointer;
     text-align: center;
     text-decoration: none;
@@ -148,6 +150,11 @@ body {
     box-shadow: 0 0 #fff;
     transform: translateY(2px);
   }
+
+#btn-decimal {
+    padding: 6px 10px;
+    font-size: 40px;
+}
 
 .white-btn {
     background-color: var(--white-btn);
