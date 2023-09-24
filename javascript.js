@@ -130,6 +130,7 @@ function percentageClicked() {
             break;
     }
     updateDisplay(String(runningTotal));
+    currentNumber = runningTotal;
     calculate = false;
     resetNumbers = true;
 }
