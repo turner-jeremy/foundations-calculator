@@ -2,7 +2,7 @@
 
 @font-face {
     font-family: Calculator;
-    src: url(./fonts/calculator.ttf);
+    src: url('./fonts/Segment7Standard.otf') format("opentype");
   }
 
 :root {
@@ -95,7 +95,7 @@ body {
     white-space: nowrap;
     overflow: hidden;
     text-align: right;
-    font-family: 'Segment7Standard';
+    font-family: Calculator;
     font-size: 32px;
     color: var(--display-digits);
     text-shadow: 
