@@ -8,12 +8,17 @@ let resetNumbers = false;
 let numberOfCalculations = 0;
 let clearDisplay = false;
 let calculate = false;
-
+let errorMessage = "";
+let errorRepeat = 1000;
+let repeatError;
+let calcLocked = false;
 
 
 const calcDisplay = document.getElementById('screen-digits');
 const calcButtons = Array.from(document.querySelectorAll('.button'));
-
+const allButtons = document.querySelector('.button');
+const background = document.querySelector('.container');
+const docBody = document.querySelector('body');
 
 calcButtons.forEach(btn => btn.addEventListener('click', buttonClicked));
 window.addEventListener('keydown', buttonClicked);
@@ -27,11 +32,16 @@ function buttonClicked(button) {
     }
     // Treat enter or return key as equals
     keyCode == 'Enter' || keyCode == 'Return' ? keyCode = '=' : keyCode = keyCode;
-    console.log(keyCode);
+
     const currentButton = document.querySelector(`button[data-key="${keyCode}"]`);
     const key = document.querySelector(`button[data-key="${keyCode}"]`);
     if (!currentButton) return; // Exit function if pressed key not assigned
       
+    if (calcLocked) {
+        fadeButton(key.id);
+        return;
+    };
+
     if (key.classList.contains('number')) {
        numberClicked(key.id);
     } else if (key.classList.contains('operator')) {
@@ -153,6 +163,10 @@ function calculateTotal() {
 }
 
 function clearClicked() {
+    unlockCalc();
+    errorMessage = "";
+    clearInterval(repeatError);
+    calcButtons.forEach(btn => btn.classList.remove('locked'));
     runningTotal = 0;
     currentNumber = 0;
     currentOperator = "";
@@ -164,6 +178,8 @@ function clearClicked() {
     clearDisplay = false;
     resetNumbers = false;
     calculate = false;
+    calcDisplay.classList.remove('glitch');
+    background.classList.remove('fade-to-black');
     updateDisplay(displayString);
 }
 
@@ -196,5 +212,30 @@ function roundNumber(currentString) {
 }
 
 function dividedByZero() {
-    updateDisplay("NO NO NO");
+    errorMessage = "OH NO OH NO OH NO "
+    lockCalc();
+    calcDisplay.innerHTML = errorMessage;
+    repeatError = setInterval(ohNo, errorRepeat);
+    calcDisplay.classList.add('glitch');
+    background.classList.add('fade-to-black');
+    setTimeout(clearClicked, 9900);
+}
+
+function ohNo() {
+    errorMessage += "OH NO ";
+    calcDisplay.innerHTML = errorMessage;
+    errorRepeat /= 1.1;
+}
+
+function lockCalc() {
+    calcLocked = true;
+}
+
+function unlockCalc() {
+    calcLocked = false;
+}
+
+function fadeButton(key) {
+    let uKey = document.getElementById(key);
+    uKey.classList.add('locked');
 }
