@@ -8,17 +8,12 @@ let resetNumbers = false;
 let numberOfCalculations = 0;
 let clearDisplay = false;
 let calculate = false;
-let errorMessage = "";
-let errorRepeat = 1000;
-let repeatError;
 let calcLocked = false;
 
 
 const calcDisplay = document.getElementById('screen-digits');
 const calcButtons = Array.from(document.querySelectorAll('.button'));
-const allButtons = document.querySelector('.button');
 const background = document.querySelector('.container');
-const docBody = document.querySelector('body');
 
 calcButtons.forEach(btn => btn.addEventListener('click', buttonClicked));
 window.addEventListener('keydown', buttonClicked);
@@ -164,8 +159,6 @@ function calculateTotal() {
 
 function clearClicked() {
     unlockCalc();
-    errorMessage = "";
-    clearInterval(repeatError);
     calcButtons.forEach(btn => btn.classList.remove('locked'));
     runningTotal = 0;
     currentNumber = 0;
@@ -212,19 +205,12 @@ function roundNumber(currentString) {
 }
 
 function dividedByZero() {
-    errorMessage = "OH NO OH NO OH NO "
+    errorMessage = 
     lockCalc();
-    calcDisplay.innerHTML = errorMessage;
-    repeatError = setInterval(ohNo, errorRepeat);
+    calcDisplay.innerHTML = "OH NO OH NO OH NO OH NO OH NO OH NO OH NO OH NO OH NO OH NO OH NO OH NO OH NO OH NO OH NO OH NO OH NO OH NO OH NO";
     calcDisplay.classList.add('glitch');
     background.classList.add('fade-to-black');
     setTimeout(clearClicked, 9900);
-}
-
-function ohNo() {
-    errorMessage += "OH NO ";
-    calcDisplay.innerHTML = errorMessage;
-    errorRepeat /= 1.1;
 }
 
 function lockCalc() {
