@@ -11,7 +11,8 @@ let calculate = false;
 let calcLocked = false;
 
 
-const calcDisplay = document.getElementById('screen-digits');
+const screenDigits = document.getElementById('screen-digits');
+const operatorButtons = Array.from(document.querySelectorAll('.operator'));
 const calcButtons = Array.from(document.querySelectorAll('.button'));
 const background = document.querySelector('.container');
 
@@ -73,6 +74,8 @@ function numberClicked(key) {
 }
 
 function operatorClicked(operatorBtn) {
+    clearOperatorHighlights();
+    document.getElementById(operatorBtn).classList.add('current-operator');
     if (repeatedOperator) {return};
 
     if (calculate) {
@@ -113,6 +116,7 @@ function equalsClicked() {
 }
 
 function percentageClicked() {
+    
     currentNumber = Number(displayString);
     percentage = (runningTotal / (100 / currentNumber));
     switch (currentOperator) {
@@ -155,12 +159,11 @@ function calculateTotal() {
             };
             break;
     };
+    clearOperatorHighlights();
     updateDisplay(String(runningTotal));
 }
 
 function clearClicked() {
-    unlockCalc();
-    calcButtons.forEach(btn => btn.classList.remove('locked'));
     runningTotal = 0;
     currentNumber = 0;
     currentOperator = "";
@@ -172,8 +175,7 @@ function clearClicked() {
     clearDisplay = false;
     resetNumbers = false;
     calculate = false;
-    calcDisplay.classList.remove('glitch');
-    background.classList.remove('fade-to-black');
+    restoreCalculator();
     updateDisplay(displayString);
 }
 
@@ -189,8 +191,8 @@ function clearEntryClicked() {
 
 function updateDisplay(currentString) {
     currentString.length <= 8 ?
-    calcDisplay.innerHTML = currentString :
-    calcDisplay.innerHTML = roundNumber(currentString);
+    screenDigits.innerHTML = currentString :
+    screenDigits.innerHTML = roundNumber(currentString);
 }
 
 function roundNumber(currentString) {
@@ -208,8 +210,9 @@ function roundNumber(currentString) {
 function dividedByZero() {
     errorMessage = 
     lockCalc();
-    calcDisplay.innerHTML = "OH NO OH NO OH NO OH NO OH NO OH NO OH NO OH NO OH NO OH NO OH NO OH NO OH NO OH NO OH NO OH NO OH NO OH NO OH NO";
-    calcDisplay.classList.add('glitch');
+    screenDigits.innerHTML = "OH NO OH NO OH NO OH NO OH NO OH NO OH NO OH NO OH NO OH NO OH NO OH NO OH NO OH NO OH NO OH NO OH NO OH NO OH NO";
+    calcButtons.forEach(btn => btn.classList.add('btn-fade-out'));
+    screenDigits.classList.add('glitch');
     background.classList.add('fade-to-black');
     setTimeout(clearClicked, 9900);
 }
@@ -225,4 +228,21 @@ function unlockCalc() {
 function fadeButton(key) {
     let uKey = document.getElementById(key);
     uKey.classList.add('locked');
+}
+
+function slowFadeCalculator() {
+    calcButtons.forEach(btn => btn.classList.add('btn-fade-out'));
+}
+
+function restoreCalculator() {
+    unlockCalc();
+    clearOperatorHighlights();
+    calcButtons.forEach(btn => btn.classList.remove('locked'));
+    calcButtons.forEach(btn => btn.classList.remove('btn-fade-out'));
+    screenDigits.classList.remove('glitch');
+    background.classList.remove('fade-to-black');
+}
+
+function clearOperatorHighlights() {
+    operatorButtons.forEach(btn => btn.classList.remove('current-operator'));
 }

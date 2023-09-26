@@ -13,6 +13,7 @@
     --body-text: #aa7331;
     --white-btn: #feffff;
     --grey-btn: #ddd4be;
+    --grey-btn-clicked: #aea796;
     --orange-btn: #f0ac62;
     --btn-text: #112329;
     --logo: #ebe1d1;
@@ -222,4 +223,20 @@ body {
 
 @keyframes fadeout {
     100% {font-size: 0px;}
+}
+
+.current-operator {
+    background-color: var(--grey-btn-clicked);
+}
+
+.btn-fade-out {
+    animation: slowfadeout 9s forwards;
+}
+
+@keyframes slowfadeout {
+    100% {
+        background-color: var(--body-inner);
+        color: var(--body-inner);
+        box-shadow: 0 0 var(--body-inner);
+         }
 }
